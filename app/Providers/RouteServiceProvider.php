@@ -37,6 +37,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
+        Route::pattern('id', '[0-9]+');
+        Route::pattern('slug', '[A-Za-z0-9-]+');
+
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
@@ -47,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+        parent::boot();
     }
 
     /**
